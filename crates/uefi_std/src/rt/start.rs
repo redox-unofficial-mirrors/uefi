@@ -2,12 +2,12 @@
 
 use crate::prelude::*;
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub unsafe extern "efiapi" fn efi_main(
     handle: Handle,
     system_table: &'static mut SystemTable,
 ) -> Status {
-    extern "C" {
+    unsafe extern "C" {
         fn main() -> Status;
     }
 
