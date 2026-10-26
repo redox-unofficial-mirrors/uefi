@@ -4,8 +4,8 @@
 
 use core::alloc::{GlobalAlloc, Layout};
 use core::ptr::{self, NonNull};
-use uefi::prelude::*;
 use uefi::memory::MemoryType;
+use uefi::prelude::*;
 
 #[global_allocator]
 static ALLOCATOR: Allocator = Allocator;

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
+use crate::TableHeader;
 use crate::memory::{MemoryDescriptor, MemoryType};
 use crate::prelude::*;
-use crate::TableHeader;
 
 #[repr(C)]
 pub enum InterfaceType {
