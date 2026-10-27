@@ -3,7 +3,7 @@
 use core::default::Default;
 use core::{mem, ptr, slice};
 
-use uefi::fs::{File as InnerFile, FileInfo, SimpleFileSystem, FILE_MODE_READ};
+use uefi::fs::{FILE_MODE_READ, File as InnerFile, FileInfo, SimpleFileSystem};
 
 use crate::ffi::wstr;
 use crate::prelude::*;

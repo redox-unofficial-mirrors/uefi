@@ -2,8 +2,8 @@
 
 use uefi::pointer::SimplePointer;
 
-use crate::proto::Protocol;
 use crate::prelude::*;
+use crate::proto::Protocol;
 
 pub struct Pointer(pub &'static mut SimplePointer);
 

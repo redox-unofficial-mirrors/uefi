@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 [workspace]
-resolver = "2"
+resolver = "3"
 members = [
     "crates/uefi",
     "crates/uefi_alloc",
@@ -9,7 +9,7 @@ members = [
 ]
 
 [workspace.package]
-edition = "2021"
+edition = "2024"
 license = "MIT"
 authors = ["Jeremy Soller <jackpot51@gmail.com>"]
 repository = "https://gitlab.redox-os.org/redox-os/uefi"

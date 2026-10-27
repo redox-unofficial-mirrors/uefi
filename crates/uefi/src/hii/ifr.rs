@@ -65,17 +65,19 @@ pub union IfrTypeValue {
 
 impl IfrTypeValue {
     pub unsafe fn to_enum(self, kind: IfrTypeKind) -> IfrTypeValueEnum {
-        match kind {
-            IfrTypeKind::U8 => IfrTypeValueEnum::U8(self.u8),
-            IfrTypeKind::U16 => IfrTypeValueEnum::U16(self.u16),
-            IfrTypeKind::U32 => IfrTypeValueEnum::U32(self.u32),
-            IfrTypeKind::U64 => IfrTypeValueEnum::U64(self.u64),
-            IfrTypeKind::Bool => IfrTypeValueEnum::Bool(self.b),
-            IfrTypeKind::Time => IfrTypeValueEnum::Time(self.time),
-            IfrTypeKind::Date => IfrTypeValueEnum::Date(self.date),
-            IfrTypeKind::String => IfrTypeValueEnum::String(self.string),
-            IfrTypeKind::Ref => IfrTypeValueEnum::Ref(self.reference),
-            _ => IfrTypeValueEnum::Other(kind, mem::transmute(self)),
+        unsafe {
+            match kind {
+                IfrTypeKind::U8 => IfrTypeValueEnum::U8(self.u8),
+                IfrTypeKind::U16 => IfrTypeValueEnum::U16(self.u16),
+                IfrTypeKind::U32 => IfrTypeValueEnum::U32(self.u32),
+                IfrTypeKind::U64 => IfrTypeValueEnum::U64(self.u64),
+                IfrTypeKind::Bool => IfrTypeValueEnum::Bool(self.b),
+                IfrTypeKind::Time => IfrTypeValueEnum::Time(self.time),
+                IfrTypeKind::Date => IfrTypeValueEnum::Date(self.date),
+                IfrTypeKind::String => IfrTypeValueEnum::String(self.string),
+                IfrTypeKind::Ref => IfrTypeValueEnum::Ref(self.reference),
+                _ => IfrTypeValueEnum::Other(kind, mem::transmute(self)),
+            }
         }
     }
 }
@@ -106,7 +108,7 @@ impl IfrTypeValueEnum {
             IfrTypeValueEnum::Date(date) => (IfrTypeKind::Date, IfrTypeValue { date }),
             IfrTypeValueEnum::String(string) => (IfrTypeKind::String, IfrTypeValue { string }),
             IfrTypeValueEnum::Ref(reference) => (IfrTypeKind::Ref, IfrTypeValue { reference }),
-            IfrTypeValueEnum::Other(kind, data) => (kind, mem::transmute(data)),
+            IfrTypeValueEnum::Other(kind, data) => (kind, unsafe { mem::transmute(data) }),
         }
     }
 }
@@ -266,7 +268,7 @@ impl IfrOpHeader {
 
     pub unsafe fn cast<T>(&self) -> Option<&T> {
         if self.Length() as usize >= mem::size_of::<T>() {
-            Some(&*(self as *const Self as *const T))
+            unsafe { Some(&*(self as *const Self as *const T)) }
         } else {
             None
         }

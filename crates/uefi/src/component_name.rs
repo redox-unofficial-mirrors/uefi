@@ -4,8 +4,11 @@ use crate::prelude::*;
 
 #[repr(C)]
 pub struct ComponentName {
-    pub GetDriverName:
-        extern "efiapi" fn(&ComponentName, Language: *const u8, DriverName: &mut *mut u16) -> Status,
+    pub GetDriverName: extern "efiapi" fn(
+        &ComponentName,
+        Language: *const u8,
+        DriverName: &mut *mut u16,
+    ) -> Status,
     pub GetControllerName: extern "efiapi" fn(
         &ComponentName,
         ControllerHandle: Handle,

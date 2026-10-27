@@ -2,12 +2,12 @@
 
 use core::slice;
 
+use crate::TableHeader;
 use crate::boot::BootServices;
 use crate::config::ConfigurationTable;
 use crate::prelude::*;
 use crate::runtime::RuntimeServices;
 use crate::text::{TextInput, TextOutput};
-use crate::TableHeader;
 
 #[repr(C)]
 pub struct SystemTable {

@@ -40,5 +40,5 @@ pub fn system_table() -> &'static SystemTable {
 }
 
 pub unsafe fn system_table_mut() -> &'static mut SystemTable {
-    &mut *SYSTEM_TABLE
+    unsafe { &mut *SYSTEM_TABLE }
 }

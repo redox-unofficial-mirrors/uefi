@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 
+use crate::TableHeader;
 use crate::capsule::CapsuleHeader;
 use crate::memory::{MemoryDescriptor, PhysicalAddress};
 use crate::prelude::*;
 use crate::reset::ResetType;
 use crate::time::{Time, TimeCapabilities};
-use crate::TableHeader;
 
 #[repr(C)]
 pub struct RuntimeServices {

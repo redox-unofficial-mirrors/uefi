@@ -2,8 +2,8 @@
 
 use uefi::loaded_image::LoadedImage as UefiLoadedImage;
 
-use crate::proto::Protocol;
 use crate::prelude::*;
+use crate::proto::Protocol;
 
 pub struct LoadedImage(pub &'static mut UefiLoadedImage);
 
